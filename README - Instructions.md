@@ -49,5 +49,3 @@ Should take around 30 to 45 seconds per file.
 
 
 Thank you for reading the steps and hopefully it has made your job 100x easier.
-
-If you have any questions or something is broken, please tell me by call, text or email :)

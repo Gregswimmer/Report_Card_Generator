@@ -1,0 +1,4 @@
+Sub separatetext()
+Range("Q6:Q9999").TextToColumns Destination:=Range("=$R$6:$X$6"), DataType:=xlDelimited, Semicolon:=True
+
+End Sub

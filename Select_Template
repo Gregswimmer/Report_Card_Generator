@@ -1,0 +1,11 @@
+Sub PDFTemplate()
+Dim PDFFldr As FileDialog
+Set PDFFldr = Application.FileDialog(msoFileDialogFilePicker)
+With PDFFldr
+    .Title = "Select Template to attach"
+    .Filters.Add "PDF Type Files", "*.pdf", 1
+    If .Show <> -1 Then GoTo NoSelection
+    Sheet1.Range("I1").Value = .SelectedItems(1)
+End With
+NoSelection:
+End Sub

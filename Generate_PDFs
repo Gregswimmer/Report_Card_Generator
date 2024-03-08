@@ -1,0 +1,93 @@
+Sub CreatePDFForms()
+Dim PDFTemplateFile, NewPDFName, SavePDFFolder, FirstName, LastName, CurrentLevel, Year, CurrentSession As String
+Dim CustRow, RowNum1, RowNum2 As Long
+
+With Sheet1
+RowNum1 = InputBox("Enter the row number of the first row you want to process.") 'Select First Row
+RowNum2 = InputBox("Enter the row number of the last row you want to process.") 'Select Last Row
+    Sheet1.Range(Cells(RowNum1), Cells(RowNum2)).Select
+PDFTemplateFile = .Range("I1").Value 'Template File Name
+SavePDFFolder = .Range("I3").Value 'Save PDF Folder
+ThisWorkbook.FollowHyperlink PDFTemplateFile 'Open PDF File
+Application.Wait Now + 0.00006
+
+For CustRow = RowNum1 To RowNum2
+Application.SendKeys "{Tab}", True
+Application.Wait Now + 0.00001
+FirstName = .Range("A" & CustRow).Value 'First Name
+LastName = .Range("B" & CustRow).Value  'Last Name
+CurrentLevel = .Range("G" & CustRow).Value 'Current Level
+Application.SendKeys "{Tab}", True
+Application.SendKeys FirstName, True
+Application.Wait Now + 0.00002
+ 
+Application.SendKeys "{Tab}", True
+Application.SendKeys .Range("B" & CustRow).Value, True 'Last Name
+Application.Wait Now + 0.00002
+
+Application.SendKeys "{Tab}", True
+Application.SendKeys .Range("C" & CustRow).Value, True 'Instructor
+Application.Wait Now + 0.00002
+
+Application.SendKeys "{Tab}", True
+Application.SendKeys .Range("D" & CustRow).Value, True 'Day
+Application.Wait Now + 0.00001
+
+Application.SendKeys "{Tab}", True
+Application.SendKeys .Range("E" & CustRow).Value, True 'Session
+Application.Wait Now + 0.00001
+
+Application.SendKeys "{Tab}", True
+Application.SendKeys .Range("F" & CustRow).Value, True 'Year
+Application.Wait Now + 0.00001
+
+Application.SendKeys "{Tab}", True
+Application.SendKeys .Range("R" & CustRow).Value, True 'Comment
+Application.Wait Now + 0.00002
+Application.SendKeys .Range("S" & CustRow).Value, True 'Comment
+Application.Wait Now + 0.00002
+Application.SendKeys .Range("T" & CustRow).Value, True 'Comment
+Application.Wait Now + 0.00002
+Application.SendKeys .Range("U" & CustRow).Value, True 'Comment
+Application.Wait Now + 0.00002
+Application.SendKeys .Range("V" & CustRow).Value, True 'Comment
+Application.Wait Now + 0.00002
+Application.SendKeys .Range("W" & CustRow).Value, True 'Comment
+Application.Wait Now + 0.00002
+Application.SendKeys .Range("X" & CustRow).Value, True 'Comment
+Application.Wait Now + 0.00002
+
+Application.SendKeys "{Tab}", True
+Application.SendKeys .Range("P" & CustRow).Value, True 'Next Level
+Application.Wait Now + 0.00002
+
+Application.SendKeys "^+{s}", True 'Save as File
+Application.Wait Now + 0.00003
+'Application.SendKeys "{Tab}", True
+'Application.Wait Now + 0.00001
+'Application.SendKeys "{Tab}", True
+'Application.Wait Now + 0.00001
+'Application.SendKeys "~", True
+'Application.Wait Now + 0.00002
+
+If Dir(SavePDFFolder & "\" & FirstName & " " & LastName & " " & .Range("G" & CustRow).Value & " " & .Range("E" & CustRow).Value & " " & .Range("F" & CustRow).Value & ".pdf") <> Empty Then Kill (SavePDFFolder & "\" & FirstName & " " & LastName & " " & .Range("G" & CustRow).Value & " " & .Range("E" & CustRow).Value & " " & .Range("F" & CustRow).Value & ".pdf")
+Application.SendKeys "%(n)", True
+Application.Wait Now + 0.00001
+Application.SendKeys SavePDFFolder & "\" & FirstName & " " & LastName & " " & .Range("G" & CustRow).Value & " " & .Range("E" & CustRow).Value & " " & .Range("F" & CustRow).Value & ".pdf", True
+Application.Wait Now + 0.00003
+Application.SendKeys "%(s)", True
+Application.Wait Now + 0.00002
+
+' Application.SendKeys "{Tab}", True
+' Application.Wait Now + 0.00001
+
+Next CustRow
+Application.SendKeys "^(q)", True 'Close File
+
+' If LastRow Then Application.SendKeys "{Tab}", True
+' Application.Wait Now + 0.00001
+' Application.SendKeys "~", True
+' Application.Wait Now + 0.00002
+' End If
+End With
+End Sub

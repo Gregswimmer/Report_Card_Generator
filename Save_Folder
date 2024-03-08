@@ -1,0 +1,10 @@
+Sub SavePDFFolder()
+Dim PDFFolder As FileDialog
+Set PDFFolder = Application.FileDialog(msoFileDialogFolderPicker)
+With PDFFolder
+    .Title = "Select a Folder"
+    If .Show <> -1 Then GoTo NoSel:
+    Sheet1.Range("I3").Value = .SelectedItems(1)
+End With
+NoSel:
+End Sub

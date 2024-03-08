@@ -1,0 +1,7 @@
+Sub Copy_Values()
+
+If IsEmpty(Range("A6:A9999").Value) = False Then
+    Range("Q6:Q9999").Value = Range("Y6:Y9999").Value
+End If
+
+End Sub

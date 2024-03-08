@@ -1,0 +1,5 @@
+Sub Clearcells()
+Range("A6:X9999").ClearContents
+Range("I1").ClearContents
+Range("I3").ClearContents
+End Sub
